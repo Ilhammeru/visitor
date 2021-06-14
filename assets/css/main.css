@@ -1,0 +1,66 @@
+@font-face {
+	/* font-family: raleway;
+	src: url("../assets/font/Raleway.ttf"); */
+
+	font-family: condensed;
+	src: url("../assets/font/condensed-Bold.ttf");
+}
+
+body, html {
+	height: 100%;
+}
+
+.card-autocomplete {
+	background-color: rgba(199, 188, 188, 0.2);
+	margin-top: 1px;
+	border: 1px grey solid;
+}
+
+.spanDashboard {
+	text-transform: uppercase;
+	background: linear-gradient(to left, #30cfd0 20%, #17b0d6 90%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: 4em;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.dropdown-home:hover {
+	background-color: black;
+	color: white;
+}
+
+span.visitorTitle {
+	text-transform: capitalize;
+	color: #2b33a1;
+	font-size: 1.2em;
+	vertical-align: middle;
+}
+
+@media only screen and (min-width: 315px) {
+	.sideNav {
+		width: 25%;
+		height: 100vh;
+		z-index: 2;
+		transition: ease .5s;
+		position: absolute;
+	}
+
+	.logo {
+		display: flex;
+	}
+
+	.list-group-item {
+		border: none;
+	}
+
+	div.mainDashboard {
+		width: 75%;
+		height: 100vh;
+		z-index: 1;
+		transition: ease .5s;
+		background: blue;
+		overflow: auto;
+		margin-left: 25%;
+	}
+}
