@@ -1053,15 +1053,26 @@ class Rekap extends CI_Controller
             }
 
             //alasan
-            if ($row->alasan == 0) {
-
-                $alasan[] = '-';
+            if ($sessPt != '41') {
+              if ($row->alasan == 0) {
+  
+                  $alasan[] = '-';
+              } else {
+  
+                  if (isset($alasanArray['al' . $row->alasan])) {
+  
+                      $alasan[] = $alasanArray['al' . $row->alasan];
+                  }
+              }
             } else {
-
-                if (isset($alasanArray['al' . $row->alasan])) {
-
-                    $alasan[] = $alasanArray['al' . $row->alasan];
-                }
+              $alasan = [
+                '0' => 'Rundingan',
+                '1' => 'Modal',
+                '2' => 'Design sendiri',
+                '3' => 'Tidak tertarik katalog',
+                '4' => 'Ongkir',
+                '5' => 'Beli satuan'
+              ];
             }
 
             //brand
