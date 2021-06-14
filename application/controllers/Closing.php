@@ -130,9 +130,8 @@ class Closing extends CI_Controller
         $this->db->limit($per_page, $halaman);
         $hasil = $this->db->get('visit')->result();
         foreach ($hasil as $row) {
-            $tanggal[]  = tanggal($row->tanggal_input);
+            $tanggal[]  = date('d F Y', strtotime($row->tanggal_input));
         }
-
 
         //ambilBrand
         $db = $this->load->database('we', true);
@@ -274,7 +273,7 @@ class Closing extends CI_Controller
         $tanggalPost = $this->input->post('tanggal');
         $pt = $_SESSION['pt'];
         //ambil data hari sesuai post dan ubah is_close
-        $this->db->select('is_close');
+        $this->db->select('is_close, nama, id_visit, tanggal_input');
         $this->db->where('tanggal_input', $tanggalPost)
             ->where('pt', $pt);
         $hasil = $this->db->get('visit');
@@ -283,7 +282,11 @@ class Closing extends CI_Controller
             'is_close'  => 1
         ];
 
-        edit('visit', $dataUpdate, array('tanggal_input' => $tanggalPost, 'pt' => $pt));
+        //edit table 
+        $this->db->where('tanggal_input', $tanggalPost);
+        $this->db->update('visit', $dataUpdate);
+
+        echo 'success';
     }
 
     public function ambilDataClosing()

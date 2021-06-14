@@ -293,22 +293,12 @@
     }
 
     function ambilClosing(halaman) {
-        // $.ajax({
-        //     type: 'get',
-        //     data: 'limit=10&halaman=' + halaman,
-        //     url: '<?= base_url('closing/paginationClosing'); ?>',
-        //     dataType: 'text',
-        //     success: function(hasil) {
-        //         $('#target').html(hasil);
-        //     }
-        // })
 
         $.ajax({
             type: 'GET',
             url: 'closing/paginationClosing/' + halaman,
             dataType: 'json',
             success: function(hasil) {
-                console.log(hasil);
                 $('.paginationClosing').html(hasil.pagination);
                 table(hasil.hasil, hasil.brandArr, hasil.halaman, hasil.tanggal);
             }
@@ -685,16 +675,19 @@
                             type: 'POST',
                             data: 'tanggal=' + tanggal,
                             url: '<?= base_url('closing/prosesClosing'); ?>',
+                            dataType: 'text',
                             success: function(hasil) {
-                                swal('Berhasil', 'Closing berhasil dilakukan', 'success', {
-                                    buttons: false,
-                                    timer: 900
-                                })
-                                $('.modalDetail').modal('hide');
-                                setTimeout(function() {
-                                    var url = '<?= base_url('closing'); ?>';
-                                    window.location = url;
-                                }, 900);
+                                if (hasil == 'success') {
+                                    swal('Berhasil', 'Closing berhasil dilakukan', 'success', {
+                                        buttons: false,
+                                        timer: 900
+                                    })
+                                    $('.modalDetail').modal('hide');
+                                    setTimeout(function() {
+                                        var url = '<?= base_url('closing'); ?>';
+                                        window.location = url;
+                                    }, 900);
+                                }
                             }
                         })
                         break;
